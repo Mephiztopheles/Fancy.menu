@@ -2,10 +2,10 @@
 
     Fancy.require ( {
         jQuery: false,
-        Fancy : "1.0.0"
+        Fancy : "1.0.1"
     } );
     var NAME    = "FancyMenu",
-        VERSION = "1.0.0",
+        VERSION = "1.0.1",
         i       = 0,
         logged  = false;
 
@@ -120,7 +120,9 @@
     };
     Fancy.menu               = VERSION;
     Fancy.api.menu           = function ( settings ) {
-        return this.set ( FancyMenu, settings );
+        return this.set ( NAME, function ( el ) {
+            return new FancyMenu ( el, settings );
+        } );
     };
 
 }) ( window, jQuery );

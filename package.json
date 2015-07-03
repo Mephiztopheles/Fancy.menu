@@ -1,0 +1,40 @@
+{
+  "name": "fancy-menu",
+  "title": "FancyMenu",
+  "description": "JavaScript Contextmenu-plugin for Fancy",
+  "version": "1.0.1",
+  "main": "fancymenu.js",
+  "homepage": "http://mephiztopheles.wtf/fancy-menu",
+  "author": "Markus Ahrweiler",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Mephiztopheles/Fancy.menu.git"
+  },
+  "ignore": [
+    "source",
+    "spec",
+    ".bowerrc",
+    ".gitignore",
+    ".jshintignore",
+    ".jshintrc",
+    "bower.json",
+    "gruntfile.js",
+    "package.json",
+    "README.md"
+  ],
+  "keywords": [
+    "fancymenu",
+    "contextmenu",
+    "javascript",
+    "browser",
+    "library"
+  ],
+  "bugs": {
+    "url": "https://github.com/Mephiztopheles/Fancy.menu/issues"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "jquery": ">=1.9.1",
+    "fancy": ">= 1.0.1"
+  }
+}

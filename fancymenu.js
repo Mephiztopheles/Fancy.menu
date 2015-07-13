@@ -2,10 +2,10 @@
 
     Fancy.require ( {
         jQuery: false,
-        Fancy : "1.0.1"
+        Fancy : "1.0.2"
     } );
     var NAME    = "FancyMenu",
-        VERSION = "1.0.1",
+        VERSION = "1.0.2",
         i       = 0,
         logged  = false;
 
@@ -79,8 +79,16 @@
             m.append ( $ ( '<span/>', {
                 id     : NAME + '-menu-' + name + '-text',
                 "class": NAME + '-menu-text',
-                html   : n.title || n.name || name
+                html   : n.name || name
             } ) );
+            if ( n.title ) {
+                m.attr ( "title", n.title );
+                if ( Fancy.tooltip )
+                    Fancy ( m ).tooltip ( { ever: true } );
+            }
+
+            if ( n.disabled )
+                m.addClass ( "disabled" );
             menu.append ( m );
 
         }
@@ -89,11 +97,13 @@
     };
     FancyMenu.api.onOpen     = function ( e ) {
         var SELF  = this;
+        if ( !SELF.settings.menu.length )
+            return;
         this.close ();
         this.createMenu ();
 
         $ ( 'body' ).append ( this.menu );
-        $ ( '.' + NAME + '-menu-element' ).on ( 'click', function ( e ) {
+        $ ( "." + NAME + "-menu-element:not(.disabled)" ).on ( 'click', function ( e ) {
             var name = $ ( this ).data ( 'name' );
             SELF.settings.menu [ name ].click && SELF.settings.menu [ name ].click.call ( SELF, e, name, $ ( this ) );
         } );

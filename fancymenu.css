@@ -29,13 +29,17 @@
     line-height : 14px;
 }
 
+.FancyMenu-menu-element.disabled {
+    background : #cecece;
+}
+
 .FancyMenu-menu-element:after {
     content : '';
     display : block;
     clear   : both;
 }
 
-.FancyMenu-menu-element:hover {
+.FancyMenu-menu-element:not(.disabled):hover {
     background : #2A2A2A;
     color      : #FFF;
 }

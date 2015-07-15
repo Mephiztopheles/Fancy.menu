@@ -82,7 +82,7 @@
                 html   : id
             } ) );
             
-            var name = n.name
+            var name = n.name;
             if( name ) {
                 if( typeof name == "function" )
                     name = name.call( SELF, n );

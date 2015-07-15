@@ -5,7 +5,7 @@
         Fancy : "1.0.2"
     } );
     var NAME    = "FancyMenu",
-        VERSION = "1.0.2",
+        VERSION = "1.0.3",
         i       = 0,
         logged  = false;
 
@@ -66,31 +66,49 @@
             } );
         wrapper.append ( inner.append ( menu ) );
 
-        for ( var name = 0; name < SELF.settings.menu.length; name++ ) {
-            var n = SELF.settings.menu [ name ],
+        for ( var id = 0; id < SELF.settings.menu.length; id++ ) {
+            var n = SELF.settings.menu [ id ],
                 m = $ ( '<li/>', {
-                    id     : NAME + '-menu-' + name,
+                    id     : NAME + '-menu-' + id,
                     "class": NAME + '-menu-element'
-                } ).data ( 'name', name );
+                } ).data ( 'name', id );
             m.append ( $ ( '<span/>', {
-                id     : NAME + '-menu-' + name + '-icon',
+                id     : NAME + '-menu-' + id + '-icon',
                 "class": NAME + '-menu-icon ' + n.icon
             } ) );
             m.append ( $ ( '<span/>', {
-                id     : NAME + '-menu-' + name + '-text',
+                id     : NAME + '-menu-' + id + '-text',
                 "class": NAME + '-menu-text',
-                html   : n.name || name
+                html   : id
             } ) );
-            if ( n.title ) {
-                m.attr ( "title", n.title );
+            
+            var name = n.name
+            if( name ) {
+                if( typeof name == "function" )
+                    name = name.call( SELF, n );
+                $( "#" + NAME + "-menu-" + id + "-text" ).html( name );
+            }
+            var title = n.title;
+            if ( typeof title == "function" ) {
+                title = title.call( SELF, n );
+            }
+            if ( title ) {
+                m.attr( "title", title );
                 if ( Fancy.tooltip )
-                    Fancy ( m ).tooltip ( { ever: true } );
+                    Fancy( m ).tooltip( { ever: true } )
+            } else if ( Fancy.tooltip ) {
+                var t = Fancy( m ).get( "tooltip" );
+                if ( t )
+                    t.destroy();
+            }
+            var disabled = n.disabled;
+            if ( typeof disabled == "function" ) {
+                disabled = disabled.call( SELF, n );
             }
 
-            if ( n.disabled )
-                m.addClass ( "disabled" );
+            if ( disabled )
+                m.addClass( "disabled" );
             menu.append ( m );
-
         }
 
         this.menu = wrapper;

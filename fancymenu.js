@@ -86,7 +86,7 @@
             if( name ) {
                 if( typeof name == "function" )
                     name = name.call( SELF, n );
-                $( "#" + NAME + "-menu-" + id + "-text" ).html( name );
+                m.find( "span" ).last().html( name );
             }
             var title = n.title;
             if ( typeof title == "function" ) {

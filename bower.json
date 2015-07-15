@@ -2,7 +2,7 @@
   "name": "fancy-menu",
   "title": "FancyMenu",
   "description": "JavaScript Contextmenu-plugin for Fancy",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "fancymenu.js",
   "homepage": "http://mephiztopheles.wtf/fancy-menu",
   "author": "Markus Ahrweiler",

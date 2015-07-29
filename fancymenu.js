@@ -5,7 +5,7 @@
         Fancy : "1.0.2"
     } );
     var NAME    = "FancyMenu",
-        VERSION = "1.0.3",
+        VERSION = "1.0.4",
         i       = 0,
         logged  = false;
 
@@ -45,7 +45,8 @@
             timer = setTimeout ( function () {
                 SELF.onOpen ( e );
             }, touchduration );
-            e.preventDefault ();
+            if( SELF.settings.preventMobileTouch )
+                e.preventDefault ();
         } );
         SELF.element.on ( "touchend." + NAME + "-" + SELF.id, function () {
             if ( timer )
@@ -143,8 +144,9 @@
         this.settings.onClose.call ( this );
     };
     Fancy.settings [ NAME ]  = {
-        menu   : [],
-        onClose: function () {}
+        menu              : [],
+        onClose           : function () {},
+        preventMobileTouch: true
     };
     Fancy.menu               = VERSION;
     Fancy.api.menu           = function ( settings ) {

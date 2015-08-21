@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fancy Menu</title>
+    <link href="../fancymenu.css" rel="stylesheet" type="text/css">
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../bower_components/fancy/fancy.min.js"></script>
+    <script src="../fancymenu.js"></script>
+    <style>
+        #context {
+            height: 200px;
+            background: black;
+        }
+    </style>
+</head>
+<body>
+    <div id="context"></div>
+</body>
+<script>
+    Fancy( "#context" ).menu( {
+        menu: [ {
+            name: "Test",
+            menu: [ {
+                name: "Test",
+                menu: [ {
+                    name : "Klick mich",
+                    click: function() {
+                        this.close();
+                        alert( "Danke!" );
+                    }
+                } ]
+            } ]
+        } ]
+    } );
+</script>
+</html>
